@@ -1,0 +1,23 @@
+<?php
+
+use App\Models\Category;
+use App\Models\Service;
+use Illuminate\Support\Str;
+
+$categories = Category::All();
+
+foreach($categories as $categorie){
+    Category::where('id', $categorie->id)
+            ->update([
+                'slug' => Str::slug($categorie->name),
+            ]);
+}
+
+$services = Service::All();
+
+foreach($services as $service){
+    Service::where('id', $service->id)
+            ->update([
+                'slug' => Str::slug($service->name),
+            ]);
+}
