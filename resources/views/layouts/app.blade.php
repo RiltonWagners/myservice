@@ -403,7 +403,7 @@
                         </ul>
                     </div>
                     <div class="col-4 col-md">
-                        <h5><strong style="color: #4a4a4a">Sobre 5</strong></h5>
+                        <h5><strong style="color: #4a4a4a">Sobre</strong></h5>
                         <ul class="list-unstyled text-small">
                             <li><a class="text-muted" href="{{ route('privacy.index') }}" style="color:#595959 !important; text-decoration: none;">Política de privacidade</a></li>
                             <li><a class="text-muted" href="#" style="color:#595959 !important; text-decoration: none;">Termos de uso</a></li>
