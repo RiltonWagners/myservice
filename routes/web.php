@@ -60,7 +60,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get(   '/my_publication/edit/{id}'   , [PublicationController::class,   'edit'    ])->name('my_publication.edit');
     Route::put(   '/my_publication/update/{id}' , [PublicationController::class,   'update'  ])->name('my_publication.update');
     Route::get(   '/my_publications'            , [PublicationController::class,   'my'      ])->name('my_publications.index');
-    Route::get(   '/my_publication/{id}'        , [PublicationController::class,   'my_show' ])->name('my_publication.show');
+    Route::get(   '/my_publication/{id}'        , [PublicationController::class,   'my_show' ])->name('my_publications.show');
     Route::delete('/my_publication/{id}'        , [PublicationController::class,   'destroy' ])->name('my_publication.destroy');
 
     Route::get(   '/category/create'      , [CategoryController::class,      'create'  ])->name('category.create');

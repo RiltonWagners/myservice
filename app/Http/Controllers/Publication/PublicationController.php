@@ -107,7 +107,7 @@ class PublicationController extends Controller
 
         $publication = Publication::findOrFail($id);
 
-        return view('my_publication.show', ['publication' => $publication, 'my_publication' => true]);
+        return view('my_publications.show', ['publication' => $publication, 'my_publication' => true]);
     }
 
     public function edit(Request $request)
