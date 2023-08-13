@@ -189,6 +189,8 @@ class HomeController extends Controller
     //OK
     public function search_category(Request $request)
     {
+        $cities = City::All();
+
         //Busca por categoria
         if(!empty($request->category)){
             
@@ -277,6 +279,12 @@ class HomeController extends Controller
     //OK
     public function search_category_city(Request $request)
     {
+        $city = City::where('name', '=', str_replace("-", " ", $request->segment(3)))
+                        ->where('uf', '=', $request->segment(2))
+                        ->get();
+        $id_city = $city[0]->id ? $city[0]->id : 0;
+        $name_city = $city[0]->id ? $city[0]->name : $request->segment(3);
+
         $states  = DB::table('businesses')
                     ->join('business_services', 'business_services.id_business', '=', 'businesses.id')
                     ->join('cities', 'businesses.id_city', '=', 'cities.code')
@@ -306,7 +314,7 @@ class HomeController extends Controller
                         ->join('cities', 'cities.code', '=', 'businesses.id_city')
                         ->join('states', 'states.uf', '=', 'cities.uf')
                         ->where('categories.slug', '=', $request->category)
-                        ->where('cities.name', '=', $request->segment(3))
+                        ->where('cities.id', '=', $id_city)
                         ->where('states.uf', '=', $request->segment(2))
                         //->where('businesses.name', 'like', '%' . $request->segment(4) . '%')
                         //->orwhere('businesses.description', 'like', '%' . $request->segment(4) . '%')
@@ -327,7 +335,7 @@ class HomeController extends Controller
             'business'        => $business,
             'cities'          => $cities,
             'states'          => $states,
-            'filter_city'     => $request->segment(3),
+            'filter_city'     => $name_city,
             'filter_state'    => $request->segment(2),
             'filter_search'   => null,
             'categories'      => $this->categories,
@@ -340,6 +348,12 @@ class HomeController extends Controller
     //OK
     public function search_category_city_search(Request $request)
     {
+        $city = City::where('name', '=', str_replace("-", " ", $request->segment(3)))
+                        ->where('uf', '=', $request->segment(2))
+                        ->get();
+        $id_city = $city[0]->id ? $city[0]->id : 0;
+        $name_city = $city[0]->id ? $city[0]->name : $request->segment(3);
+
         $states  = DB::table('businesses')
                     ->join('business_services', 'business_services.id_business', '=', 'businesses.id')
                     ->join('cities', 'businesses.id_city', '=', 'cities.code')
@@ -369,7 +383,7 @@ class HomeController extends Controller
                         ->join('cities', 'cities.code', '=', 'businesses.id_city')
                         ->join('states', 'states.uf', '=', 'cities.uf')
                         ->where('categories.name', 'like', '%'.$request->segment(4).'%')
-                        ->where('cities.name', '=', $request->segment(3))
+                        ->where('cities.id', '=', $id_city)
                         ->where('states.uf', '=', $request->segment(2))
                         ->where('businesses.name', 'like', '%'.$request->segment(4).'%')
                         ->where('businesses.description', 'like', '%'.$request->segment(4).'%')
@@ -391,7 +405,7 @@ class HomeController extends Controller
             'business'        => $business,
             'cities'          => $cities,
             'states'          => $states,
-            'filter_city'     => $request->segment(3),
+            'filter_city'     => $name_city,
             'filter_state'    => $request->segment(2),
             'filter_search'   => $request->segment(4),
             'categories'      => $this->categories,
@@ -403,6 +417,12 @@ class HomeController extends Controller
 
     public function search_city(Request $request)
     {
+        $city = City::where('name', '=', str_replace("-", " ", $request->segment(2)))
+                        ->where('uf', '=', $request->segment(1))
+                        ->get();
+        $id_city = $city[0]->id ? $city[0]->id : 0;
+        $name_city = $city[0]->id ? $city[0]->name : $request->segment(2);
+
         $states  = DB::table('businesses')
                     ->join('cities', 'businesses.id_city', '=', 'cities.code')
                     ->join('states', 'cities.uf', '=', 'states.uf')
@@ -416,7 +436,7 @@ class HomeController extends Controller
                     ->join('categories', 'categories.id', '=', 'services.id_category')
                     ->join('cities', 'businesses.id_city', '=', 'cities.code')
                     ->join('states', 'cities.uf', '=', 'states.uf')
-                    ->where('cities.name', '=', $request->segment(2))
+                    ->where('cities.id', '=', $id_city)
                     ->where('states.uf', '=', $request->segment(1))
                     ->where('businesses.status', '=', 'published')
                     ->distinct()
@@ -429,7 +449,7 @@ class HomeController extends Controller
                                 ->join('categories', 'categories.id', '=', 'services.id_category')
                                 ->join('cities', 'cities.code', '=', 'businesses.id_city')
                                 ->join('states', 'states.uf', '=', 'cities.uf')
-                                ->where('cities.name', '=', $request->segment(2))
+                                ->where('cities.id', '=', $id_city)
                                 ->where('states.uf', '=', $request->segment(1))
                                 ->where('businesses.name', 'like', '%' . $request->segment(3) . '%')
                                 ->orwhere('businesses.description', 'like', '%' . $request->segment(3) . '%')
@@ -451,7 +471,7 @@ class HomeController extends Controller
                 'business'        => $business,
                 'cities'          => $cities,
                 'states'          => $states,
-                'filter_city'     => $request->segment(2),
+                'filter_city'     => $name_city,
                 'filter_state'    => $request->segment(1),
                 'filter_search'   => $request->segment(3),
                 'categories'      => $this->categories
@@ -461,7 +481,7 @@ class HomeController extends Controller
                 'business'        => $business,
                 'cities'          => $cities,
                 'states'          => $states,
-                'filter_city'     => $request->segment(2),
+                'filter_city'     => $name_city,
                 'filter_state'    => $request->segment(1),
                 'filter_search'   => $request->segment(3),
                 'categories'      => $this->categories,

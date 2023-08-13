@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Service;
+use App\Models\City;
 use Illuminate\Support\Str;
 
 $categories = Category::All();
@@ -19,5 +20,15 @@ foreach($services as $service){
     Service::where('id', $service->id)
             ->update([
                 'slug' => Str::slug($service->name),
+            ]);
+}
+
+
+$cities = City::All();
+
+foreach($cities as $city){
+    City::where('id', $city->id)
+            ->update([
+                'slug' => Str::slug($city->name),
             ]);
 }

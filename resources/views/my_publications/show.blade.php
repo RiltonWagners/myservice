@@ -230,30 +230,8 @@
 
     });
 
-    function loadzipcode() {
-
-        zipcode = $('#zipcode').val();
-
-        console.log(zipcode.length);
-
-        if ($('#zipcode').val().length > 8) {
-
-            $('#loading').css('display', 'block');
-            $("#district").val("");
-            const url = $('#personForm').attr("data-district-url");
-
-            console.log(zipcode);
-            $.ajax({
-                url: url,
-                data: {
-                    'zipcode': zipcode,
-                },
-                success: function(data) {
-                    $('#loading').css('display', 'none');
-                    $("#district").html(data);
-                }
-            })
-        }
-    };
 </script>
+    
+    @include('functions.loadzipcode')
+
 @endsection

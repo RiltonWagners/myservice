@@ -142,7 +142,7 @@
         <div class="col-md-1">
         </div>
         
-        <div class="col-md-3" style="padding-bottom: 10px; width:24%;">
+        <div class="col-md-3" style="padding-bottom: 10px; width:24%; margin-top: 30px;">
             <div class="d-none d-md-block" id="navbarSupportedContent">
 
                 <div class="card" style="margin-bottom: 10px; height: auto;">
@@ -177,16 +177,16 @@
                                                         <ul class="list-group">
                                                             @if(isset($search_category))
                                                                 @if((isset($filter_search) && !empty($filter_search)))
-                                                                    <a href="{{route('search.category_city_search', ['state'=>$state->uf, 'city'=>$city->name,'filter_search'=>$filter_search])}}" class="list-group-item list-group-item-action fetch_city" id="{{$city->code}}" style="padding: 2px 5px 2px 6px;">{{$city->name}}
+                                                                    <a href="{{route('search.category_city_search', ['state'=>$state->uf, 'city'=>generateSlug($city->name),'filter_search'=>$filter_search])}}" class="list-group-item list-group-item-action fetch_city" id="{{$city->code}}" style="padding: 2px 5px 2px 6px;">{{$city->name}}
                                                                         <span style="float: right; padding-right: 5px;color: #fe5002;font-weight: 600;">{{$city->business_count}}</span>
                                                                     </a>
                                                                 @else
-                                                                    <a href="{{route('search.category_city', ['category'=>$search_category,'state'=>$state->uf, 'city'=>$city->name,'filter_search'=>$filter_search])}}" class="list-group-item list-group-item-action fetch_city" id="{{$city->code}}" style="padding: 2px 5px 2px 6px;">{{$city->name}}
+                                                                    <a href="{{route('search.category_city', ['category'=>generateSlug($search_category),'state'=>$state->uf, 'city'=>generateSlug($city->name),'filter_search'=>$filter_search])}}" class="list-group-item list-group-item-action fetch_city" id="{{$city->code}}" style="padding: 2px 5px 2px 6px;">{{$city->name}}
                                                                         <span style="float: right; padding-right: 5px;color: #fe5002;font-weight: 600;">{{$city->business_count}}</span>
                                                                     </a>
                                                                 @endif
                                                             @else 
-                                                                <a href="{{route('search.city', ['state'=>$state->uf, 'city'=>$city->name, 'filter_search'=>$filter_search])}}" class="list-group-item list-group-item-action fetch_city" id="{{$city->code}}" style="padding: 2px 5px 2px 6px;">{{$city->name}}
+                                                                <a href="{{route('search.city', ['state'=>$state->uf, 'city'=>generateSlug($city->name), 'filter_search'=> $filter_search])}}" class="list-group-item list-group-item-action fetch_city" id="{{$city->code}}" style="padding: 2px 5px 2px 6px;">{{$city->name}}
                                                                     <span style="float: right; padding-right: 5px;color: #fe5002;font-weight: 600;">{{$city->business_count}}</span>
                                                                 </a>
                                                             @endif
@@ -225,7 +225,7 @@
 
                         @if(isset($filter_city) && !empty($filter_city))
                             @if(isset($filter_search) && !empty($filter_search))
-                                <strong>em <span style="color:#fe5002;">{{$filter_city}}</span>, em busca por <span style="color:#fe5002;">'{{$filter_search}}'</span></strong>
+                                <strong>em <span style="color:#fe5002;">{{$filter_city}}</span> em busca por <span style="color:#fe5002;">'{{$filter_search}}'</span></strong>
                             @else
                                 <strong>em <span style="color:#fe5002;">{{$filter_city}}</span></strong>
                             @endif
