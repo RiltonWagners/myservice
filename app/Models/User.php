@@ -76,7 +76,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function Subscription()
     {
-        return $this->hasMany(Subscription::class, foreignKey: 'id_user', localKey: 'id')->where('status', 'open');
+        return $this->hasMany(Subscription::class, foreignKey: 'id_user', localKey: 'id')->where('status', 'active');
     }
 
     public function Business()

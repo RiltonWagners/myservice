@@ -42,18 +42,18 @@ class SubscriptionController extends Controller
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET'));
 
         //$user = User::where('id_user', auth()->user()->id);
-        $subscription = Subscription::where('id_user', '=', auth()->user()->id)->get();
-        //dd($subscription[0]);
-        if(!empty($subscription[0]->id_customer)){
+        $user = User::where('id', '=', auth()->user()->id)->get();
+        //dd( $user[0]->Subscription[0]->id_price);
+        if(!empty($user[0]->id_customer)){
 
             $session = $stripe->checkout->sessions->create([
-                'customer' => $subscription[0]->id_customer,
+                'customer' => $user[0]->id_customer,
                 'success_url' => env('STRIPE_SUCCESS_URL'),
                 'cancel_url' => env('STRIPE_CANCEL_URL'),
                 'mode' => 'subscription',
                 'line_items' => [
                     [
-                        'price' => $subscription[0]->id_price,
+                        'price' => $user[0]->Subscription[0]->id_price,
                         // For metered billing, do not pass quantity
                         'quantity' => 1,
                     ],
