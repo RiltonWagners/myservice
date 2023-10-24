@@ -32,19 +32,19 @@
                                     <div class="carousel-inner">
                                    
                                         @forelse($publication->PublicationImage as $i => $image)
-                                        @if(!$i)
-                                        <div class="carousel-item active" style="min-width: 56% !important; max-width: 100% !important;">
-                                            <img src="/{{$image->path}}" class="img-thumbnail" width="800px" height="600px" alt="..." style="border-radius: 10px;border: none; width:550px; height:300px;">
-                                        </div>
-                                        @else
-                                        <div class="carousel-item" style="min-width: 56% !important; max-width: 100% !important;">
-                                            <img src="/{{$image->path}}" class="img-thumbnail" width="800px" height="600px" alt="..." style="border-radius: 10px;border: none; width:550px; height:300px;">
-                                        </div>
-                                        @endif
-                                        @empty
-                                        <div class="carousel-item active" style="min-width: 56% !important; max-width: 100% !important;">
-                                            <img src="/img/image.jpg" class="img-thumbnail" alt="..." width="800px" height="600px" style="border-radius: 10px;border: none; width:550px; height:300px;">
-                                        </div>
+                                            @if(!$i)
+                                            <div class="carousel-item active" style="min-width: 56% !important; max-width: 100% !important;">
+                                                <img src="/{{$image->path}}" class="img-thumbnail" width="800px" height="600px" alt="..." style="border-radius: 10px;border: none; width:550px; height:300px;">
+                                            </div>
+                                            @else
+                                            <div class="carousel-item" style="min-width: 56% !important; max-width: 100% !important;">
+                                                <img src="/{{$image->path}}" class="img-thumbnail" width="800px" height="600px" alt="..." style="border-radius: 10px;border: none; width:550px; height:300px;">
+                                            </div>
+                                            @endif
+                                            @empty
+                                            <div class="carousel-item active" style="min-width: 56% !important; max-width: 100% !important;">
+                                                <img src="/img/image.jpg" class="img-thumbnail" alt="..." width="800px" height="600px" style="border-radius: 10px;border: none; width:550px; height:300px;">
+                                            </div>
                                         @endforelse
                                     </div>
                                 </div>

@@ -93,6 +93,7 @@
                 event.preventDefault(); // Impede o comportamento padrão do link
                 document.getElementById('CustomerId').submit();
             });
+            
 */
         });
 
@@ -264,11 +265,25 @@
                 </li>
 
                 @auth
-                <li class="nav-item" data-toggle="tooltip" data-bs-placement="top" data-bs-title="Meu negócio">
-                    <a class="nav-link" href="{{ route('my_business.my_business') }}">
-                        <i class="fa fa-briefcase" style="color:#fe5002;">
+                <li class="nav-item dropdown" data-toggle="tooltip" data-bs-placement="top" data-bs-title="Meu negócio">
+                    <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <i class="fa fa-briefcase" style="color:#fe5002;">
                         </i>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <span class="dropdown-item" style="background: none; color: #fe5002; font-weight: bold;">Meu negócio</span>
+                        
+                        @if(Auth::user()->Business[0]['status'] == 'published')
+                            <span class="dropdown-item" style="background: none; color: #01c700; font-size: smaller; padding-top: unset; margin-top: -10px;">(Publicado)</span>
+                        @else
+                            <span class="dropdown-item" style="background: none; color: #dc3545; font-size: smaller; padding-top: unset; margin-top: -10px;">(Não publicado)</span>
+                        @endif
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{{ route('my_business.show')}}">Ver</a>
+                        <a class="dropdown-item" href="{{ route('my_business.edit') }}">Editar</a>
+                        <a class="dropdown-item" href="#">Orçamentos</a>
+                    </div>
                 </li>
                 <li class="nav-item" data-toggle="tooltip" data-bs-placement="top" data-bs-title="Anunciar serviço" style="color:#fe5002;">
                     <a class="nav-link" href="{{ route('my_publication.create')}}">

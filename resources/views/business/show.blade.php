@@ -46,7 +46,7 @@
                                     <span style="font-size: 16px; color: #4a4a4a;" class="mb-0"><strong>{{$business->BusinessService[0]->service[0]->category->name}}</strong></span>
                                 </div>
                                 @foreach($business->BusinessService as $service)
-                                    <div style="padding: 0 10px 5px 10px; line-height: 22px; background-color: #e8e8e8; border-radius: 11px; color: #000; font-size: 14px; margin: 2px; max-width: max-content; border-style: groove;">{{$service->service[0]->name}}</div>
+                                    <div style="border-bottom: 1px solid #ededed;padding: 10px 10px 10px 10px;">{{$service->service[0]->name}}</div>
                                 @endforeach
                             </div>
                         </div>

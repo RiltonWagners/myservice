@@ -16,6 +16,16 @@
     @endif
     
 </div>
+
+<!-- Inclua o jQuery primeiro -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Em seguida, inclua os scripts do Slick Carousel -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 <script type="text/javascript">
     $(document).ready(function() {
         var scrollDistance = 340; // Distância a ser rolada em pixels
@@ -31,6 +41,8 @@
                 scrollLeft: "+=" + scrollDistance
             }, 400);
         });
+
+        
     });
 </script>
 <!-- CSS customizado -->
@@ -63,6 +75,11 @@
         border: none;
         cursor: pointer;
     }
+
+    .carousel {
+        width: 1000px;
+        margin: 0 auto;
+    }
 </style>
 
 
@@ -75,46 +92,31 @@
         <h1 style="color:#fe5002; text-align: -webkit-center;">Resultados para: <strong>{{@$filter_search}}</strong></h1>
     @endif
 
-        <div class="col-md-1" style="width: 50px;">
-            <div class="nav-buttons" style="top: 45%;">
-                <i class="bi bi-chevron-left scroll-left" style="color:#fe5002; font-size: 25px; padding: 30px 0 60px 0;"></i>
-            </div>
-        </div>
         <div class="col-md-10">
-            <div class="scrolling-wrapper">
-                <div class="scrolling-content" style="padding-bottom: 20px; padding-top: 10px; justify-content: center;">
-                    @foreach($categories as $category)
-                    <a href="{{url('/').'/'.$category->slug}}" class="fetch_category" id="{{$category->id}}" style="text-decoration: none!important;">
-                        <div class="card" style="width: 140px;
-    height: 130px;
-    margin-left: 4.5px;
-    margin-right: 4.5px;
-    line-height: 18px;
-    padding: 32px 8px 0;
-    text-align: center;
-    background-color: #fff;
-    border: 1px solid #ededed;
-    border-radius: 5px;
-    color: #2b2b2b;
-    box-shadow: 1px 3px 3px 0 rgba(0,0,0,.17)!important; background-clip: padding-box; display: block; ">
-                            <span style="display: block; color: #fe5002; height: 50px; line-height: 50px;">
-                                <i class="{{$category->icon}}" style="font-size:35px;"></i></span>
-                            <span class="button__card__text  ">{{$category->name}}</span>
-                        </div>
-                    </a>
-                    @endforeach
-
-
-
-
-                </div>
-
-            </div>
-
-        </div>
-        <div class="col-md-1" style="width: 50px;">
-            <div class="nav-buttons" style="top: 45%;">
-                <i class="bi bi-chevron-right scroll-right" style="color:#fe5002; font-size: 25px; padding: 30px 0 60px 0;"></i>
+            <div class="carousel">
+                @foreach($categories as $category)
+                    <div>
+                        <a href="{{url('/').'/'.$category->slug}}" class="fetch_category" id="{{$category->id}}" style="text-decoration: none!important;">
+                            <div class="card" style="width: 140px;
+                                height: 127px;
+                                margin: 4.5px;
+                                line-height: 18px;
+                                padding: 20px 5px 0;
+                                text-align: center;
+                                background-color: #fff;
+                                border: 1px solid #ededed;
+                                border-radius: 5px;
+                                color: #2b2b2b;
+                                box-shadow: 1px 3px 3px 0 rgba(0,0,0,.17)!important; 
+                                background-clip: padding-box; 
+                                display: block; ">
+                                    <span style="display: block; color: #fe5002; height: 50px; line-height: 50px;">
+                                        <i class="{{$category->icon}}" style="font-size:35px;"></i></span>
+                                    <span class="button__card__text  ">Teste{{$category->name}}</span>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -122,19 +124,6 @@
    
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @if (count($business) > 0 && count($cities) > 0)
 <div class="container">
@@ -426,5 +415,41 @@
     });
 </script>
 
+<script>
+$(document).ready(function(){
+   $('.carousel').slick({
+      dots: true,
+      infinite: true,
+      slidesToShow: 5,
+      slidesToScroll: 3,
+      arrows: true,
+      centerMode: true,
+      speed: 1000,
+      responsive: [
+        {
+            breakpoint: 1024, // Quando a largura da tela for 1024 pixels ou menos
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 3
+            }
+        },
+        {
+            breakpoint: 768, // Quando a largura da tela for 768 pixels ou menos
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 480, // Quando a largura da tela for 480 pixels ou menos
+            settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        }
+    ]
+   });
+});
+</script>
 
 @endsection
