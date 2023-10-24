@@ -112,7 +112,7 @@
                                 display: block; ">
                                     <span style="display: block; color: #fe5002; height: 50px; line-height: 50px;">
                                         <i class="{{$category->icon}}" style="font-size:35px;"></i></span>
-                                    <span class="button__card__text  ">Teste{{$category->name}}</span>
+                                    <span class="button__card__text  ">{{$category->name}}</span>
                             </div>
                         </a>
                     </div>
