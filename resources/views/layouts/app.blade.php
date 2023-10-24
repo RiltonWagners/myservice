@@ -400,7 +400,7 @@
 
     </main>
     
-    <div style="background: #28262529; margin-top: 65px;">
+    <div style="background: #ededed; margin-top: 65px;">
         <div class="container"  style="margin-top: 30px;">
             <footer class="pt-4 pt-md-5 border-top" style="padding-bottom: 30px;">
                 <div class="row">
